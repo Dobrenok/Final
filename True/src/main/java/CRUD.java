@@ -1,9 +1,7 @@
 import org.hibernate.Session;
-import unt.HibernateUtil;
 import unt.UserEntity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 public class CRUD {
 
@@ -12,19 +10,19 @@ public class CRUD {
     public void createUser(String name, int age, int isAdmin)  {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
         UserEntity user = new UserEntity();
        // user.setId(id);
         user.setName(name);
         user.setAge(age);
         user.setIsAdmin(isAdmin);
-        user.setCreatedData(new SimpleDateFormat("dd.mm.yyyy").format(date));
+        user.setCreatedData(calendar.toString());
         session.save(user);
         session.getTransaction().commit();
     }
 
     private void deleteUser(Object o) {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
+         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session.delete(o);
         session.flush();
