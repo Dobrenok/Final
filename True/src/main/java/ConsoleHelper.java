@@ -38,17 +38,38 @@ public class ConsoleHelper implements ConsoleInterface
     {
         CRUD crud = new CRUD();
 
-        if(index == 1) {
+        if(index == 1)
+        {
             String name = enterName();
             System.out.println(name);
             int age = enterAge();
             System.out.println(age);
             int isAdmin = enterIsAdmin();
-            crud.createUser(name,age,isAdmin);}
+            crud.createUser(name,age,isAdmin);
+        }
       //  else if(index == 2) findAndReadUser();
-      //  else if (index == 3) updateUser();
+        else if (index == 3)
+        {
+            String name = enterName();
+            System.out.println(name);
+            int id = enterId();
+            System.out.println(id);
+            int age = enterAge();
+            System.out.println(age);
+            int isAdmin = enterIsAdmin();
+            crud.updateUser(id,name,age,isAdmin);
+        }
        // else if (index == 4) deleteUser();
        // else throw new IllegalArgumentException();
+    }
+
+    private int enterId()
+    {
+        int id;
+        System.out.println("Enter id for search:");
+        Scanner scanner = new Scanner(System.in);
+        id = scanner.nextInt();
+        return id;
     }
 
 
